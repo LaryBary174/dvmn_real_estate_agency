@@ -53,8 +53,8 @@ class Flat(models.Model):
 
 
 class Claim(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_claims')
-    flat = models.ForeignKey(Flat, on_delete=models.CASCADE, related_name='flat_claims')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    flat = models.ForeignKey(Flat, on_delete=models.CASCADE, related_name='flats')
     description = models.TextField()
 
     def __str__(self):
@@ -68,5 +68,5 @@ class Owner(models.Model):
     flats = models.ManyToManyField(Flat,verbose_name='Квартиры в собственности', related_name='owners')
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name
 
